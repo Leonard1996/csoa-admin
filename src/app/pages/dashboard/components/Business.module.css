@@ -1,0 +1,10 @@
+.notes {
+    height: 150px;
+    width: 98%;
+
+}
+
+.notes:focus {
+    outline: none !important;
+    border:2px solid #06c47c;
+}
