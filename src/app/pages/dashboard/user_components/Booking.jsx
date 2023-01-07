@@ -36,7 +36,6 @@ export default function Calendar() {
         <BusinessesReserveForm
           handleClose={() => console.log("for user")}
           business={business}
-          // isComplex={true}
         />
       ) : (
         <div

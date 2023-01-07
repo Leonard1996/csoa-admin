@@ -364,7 +364,6 @@ export default function BusinessCalendarModal({
   const [events, setEvents] = React.useState([]);
   const [fields, setFields] = React.useState([]);
   const [activeField, setActiveField] = React.useState();
-  const [sport, setSport] = React.useState({});
 
   const isLoading = useSelector((state) => state.user.isLoading);
 
@@ -435,12 +434,6 @@ export default function BusinessCalendarModal({
       setFields(fields.data.data.locations);
       if (fields.data.data.locations?.length) {
         setActiveField(fields.data.data.locations[0]);
-        setSport(
-          fields.data.data.locations[0]?.isFootball ??
-            fields.data.data.locations[0]?.isBasketball ??
-            fields.data.data.locations[0]?.isTennis ??
-            fields.data.data.locations[0]?.isVolleyball
-        );
         fetchEventsByFieldId(fields.data.data.locations[0]);
       }
     } catch (error) {
@@ -483,13 +476,12 @@ export default function BusinessCalendarModal({
       ...period,
       ...inputs,
       locationId: activeField.id,
-      sport,
+      sport:
+        (activeField?.isFootball && "football") ??
+        (activeField?.isBasketball && "basketball") ??
+        (activeField?.isTennis && "tenis") ??
+        (activeField?.isVolleyball && "voleyball"),
       isWeekly,
-      // sportAlEnMap[sport] ??
-      // sportAlEnMap[activeField?.isFootball?.name] ??
-      // sportAlEnMap[activeField?.isBasketball?.name] ??
-      // sportAlEnMap[activeField?.isTennis?.name] ??
-      // sportAlEnMap[activeField?.isVolleyball?.name],
     });
   };
 
@@ -583,7 +575,6 @@ export default function BusinessCalendarModal({
               >
                 <DataGrid
                   getRowClassName={(params) => {
-                    console.log({ a: params.row.status });
                     if (params.row.status === "waiting_for_confirmation") {
                       return "waiting";
                     }
