@@ -218,6 +218,17 @@ export default function Home() {
 
   const handleSubmit = async () => {
     try {
+      let hasSlotrange = true;
+      if (fields.locations.length) {
+        fields.locations.forEach((location) => {
+          if (!location.slotRange) hasSlotrange = false;
+        });
+      }
+      if (!hasSlotrange) {
+        alert("Fushat duhet te kene te perzgjedhur kohezgjatjen");
+        return;
+      }
+
       setRequestState((s) => ({ ...s, isLoading: true }));
 
       const formData = new FormData();

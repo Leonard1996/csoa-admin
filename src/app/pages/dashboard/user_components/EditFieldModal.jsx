@@ -80,34 +80,6 @@ export default function EditFieldModal({ isOpen, handleClose, id, editField }) {
                 {checkbox.label}
               </div>
             ))}
-            <Grid item xs={12}>
-              Zgjidhni kohëzgjatjen e seances
-            </Grid>
-            <Grid item xs={12}>
-              <RadioGroup
-                row
-                value={fields?.slotRange ?? null}
-                onChange={(e) =>
-                  setFields((f) => ({ ...f, slotRange: e.target.value }))
-                }
-              >
-                <FormControlLabel
-                  value={60}
-                  control={<Radio />}
-                  label="1 orë"
-                />
-                <FormControlLabel
-                  value={90}
-                  control={<Radio />}
-                  label="1 orë e gjysëm"
-                />
-                <FormControlLabel
-                  value={120}
-                  control={<Radio />}
-                  label="2 orë "
-                />
-              </RadioGroup>
-            </Grid>
           </Grid>
         </form>{" "}
       </Box>
